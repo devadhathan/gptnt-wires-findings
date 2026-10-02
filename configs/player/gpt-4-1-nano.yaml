@@ -4,29 +4,26 @@ defaults:
   - _self_
 
 identity:
-  display_name: GPT-5.2
+  display_name: GPT-4.1 Nano
   organisation: OpenAI
   is_os_model: false
-  url: https://platform.openai.com/docs/models/gpt-5.2
+  url: https://platform.openai.com/docs/models/gpt-4.1-nano
 
 capabilities:
-  player_name: gpt-5-2
-  tokens_per_image: 383
-  structured_output_mode: null
+  player_name: gpt-4-1-nano
+  tokens_per_image: 738
   thinking_method: thinking-out-loud
+  structured_output_mode: null
   include_schema_in_instructions: true
   interaction_location_method: set-of-marks
   usage_limits:
-    input_tokens_limit: 400000
-    output_tokens_limit: 128000
+    input_tokens_limit: 200000
+    output_tokens_limit: 64000
 
 action_predictor:
   agent:
     model:
       _target_: pydantic_ai.models.openai.OpenAIChatModel
-      model_name: gpt-5.2
-
-    # GPTNT `thinking: false` maps to OpenAI reasoning_effort=none (supported).
-    # `minimal` is no longer accepted by the gpt-5.2 API.
+      model_name: gpt-4.1-nano
     model_settings:
       thinking: false

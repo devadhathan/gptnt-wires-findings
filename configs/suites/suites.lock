@@ -1,6 +1,2246 @@
 version = 3
 
 [[suite]]
+name = "comm-keypad-async"
+revision = 1
+modality = ["language", "vision"]
+missions_path = "configs/missions/keypad_10"
+manual_rule_seed = 1764
+suite_digest = "fc3eab99bc78b7745881c39bc304a98d"
+frozen_at = "2026-10-02T11:12:46.755027Z"
+gptnt_version = "2.2.0"
+git_sha = "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936"
+
+[[suite.missions]]
+mission_key = "234|1764|Keypad"
+digest = "522e9d548fff61f229092b4d9aad9000"
+
+[[suite.missions]]
+mission_key = "286|1764|Keypad"
+digest = "9f5a8896fb2614e5689b59e47da958f6"
+
+[[suite.missions]]
+mission_key = "337|1764|Keypad"
+digest = "400080a407554854314fabc3cd6c4c1a"
+
+[[suite.missions]]
+mission_key = "561|1764|Keypad"
+digest = "65a3572fb9932750c5123d1a41d4fa2f"
+
+[[suite.missions]]
+mission_key = "563|1764|Keypad"
+digest = "56709780209209ae1c759bd18fe89ecd"
+
+[[suite.missions]]
+mission_key = "798|1764|Keypad"
+digest = "7aab54b8c0325fd7e636027c150d5f73"
+
+[[suite.missions]]
+mission_key = "813|1764|Keypad"
+digest = "03fd9c3551deb06ec96facc8c55eb734"
+
+[[suite.missions]]
+mission_key = "845|1764|Keypad"
+digest = "98ed1580e58812075b4abb1044c8dc4c"
+
+[[suite.missions]]
+mission_key = "849|1764|Keypad"
+digest = "aba532fbd687f9e3b7bfe5e45c649b14"
+
+[[suite.missions]]
+mission_key = "960|1764|Keypad"
+digest = "908ce97d134b38fa6cfc0895b903bbf1"
+
+[suite.defuser_protocol]
+role = "defuser"
+communication_style = "async"
+is_playing_alone = false
+include_manual = false
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.expert_protocol]
+role = "expert"
+communication_style = "async"
+is_playing_alone = false
+include_manual = true
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.matchup]
+pairing_type = "with_self"
+
+[suite.manual_profile]
+include_frontmatter = false
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Wires"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BigButton"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Keypad"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Simon"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WhosOnFirst"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Memory"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Morse"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Venn"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WireSequence"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Maze"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Password"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "IndicatorWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BatteryWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "PortWidget"
+language = "en"
+
+[[suite]]
+name = "comm-keypad-async"
+revision = 2
+modality = ["language", "vision"]
+missions_path = "configs/missions/keypad_10"
+manual_rule_seed = 1764
+suite_digest = "888c9d4491b9b86e24b881eca6d72847"
+frozen_at = "2026-10-02T11:20:17.25555Z"
+gptnt_version = "2.2.0"
+git_sha = "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936"
+
+[[suite.missions]]
+mission_key = "234|1764|Keypad"
+digest = "522e9d548fff61f229092b4d9aad9000"
+
+[[suite.missions]]
+mission_key = "286|1764|Keypad"
+digest = "9f5a8896fb2614e5689b59e47da958f6"
+
+[[suite.missions]]
+mission_key = "337|1764|Keypad"
+digest = "400080a407554854314fabc3cd6c4c1a"
+
+[[suite.missions]]
+mission_key = "561|1764|Keypad"
+digest = "65a3572fb9932750c5123d1a41d4fa2f"
+
+[[suite.missions]]
+mission_key = "563|1764|Keypad"
+digest = "56709780209209ae1c759bd18fe89ecd"
+
+[[suite.missions]]
+mission_key = "798|1764|Keypad"
+digest = "7aab54b8c0325fd7e636027c150d5f73"
+
+[[suite.missions]]
+mission_key = "813|1764|Keypad"
+digest = "03fd9c3551deb06ec96facc8c55eb734"
+
+[[suite.missions]]
+mission_key = "845|1764|Keypad"
+digest = "98ed1580e58812075b4abb1044c8dc4c"
+
+[[suite.missions]]
+mission_key = "849|1764|Keypad"
+digest = "aba532fbd687f9e3b7bfe5e45c649b14"
+
+[[suite.missions]]
+mission_key = "960|1764|Keypad"
+digest = "908ce97d134b38fa6cfc0895b903bbf1"
+
+[suite.defuser_protocol]
+role = "defuser"
+communication_style = "async"
+is_playing_alone = false
+include_manual = false
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.expert_protocol]
+role = "expert"
+communication_style = "async"
+is_playing_alone = false
+include_manual = true
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.matchup]
+pairing_type = "with_best_expert"
+
+[suite.manual_profile]
+include_frontmatter = false
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Wires"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BigButton"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Keypad"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Simon"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WhosOnFirst"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Memory"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Morse"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Venn"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WireSequence"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Maze"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Password"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "IndicatorWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BatteryWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "PortWidget"
+language = "en"
+
+[[suite]]
+name = "comm-keypad-sync"
+revision = 1
+modality = ["language", "vision"]
+missions_path = "configs/missions/keypad_10"
+manual_rule_seed = 1764
+suite_digest = "9f7c0f7a55711df4526a83823265d267"
+frozen_at = "2026-10-02T11:12:46.755027Z"
+gptnt_version = "2.2.0"
+git_sha = "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936"
+
+[[suite.missions]]
+mission_key = "234|1764|Keypad"
+digest = "522e9d548fff61f229092b4d9aad9000"
+
+[[suite.missions]]
+mission_key = "286|1764|Keypad"
+digest = "9f5a8896fb2614e5689b59e47da958f6"
+
+[[suite.missions]]
+mission_key = "337|1764|Keypad"
+digest = "400080a407554854314fabc3cd6c4c1a"
+
+[[suite.missions]]
+mission_key = "561|1764|Keypad"
+digest = "65a3572fb9932750c5123d1a41d4fa2f"
+
+[[suite.missions]]
+mission_key = "563|1764|Keypad"
+digest = "56709780209209ae1c759bd18fe89ecd"
+
+[[suite.missions]]
+mission_key = "798|1764|Keypad"
+digest = "7aab54b8c0325fd7e636027c150d5f73"
+
+[[suite.missions]]
+mission_key = "813|1764|Keypad"
+digest = "03fd9c3551deb06ec96facc8c55eb734"
+
+[[suite.missions]]
+mission_key = "845|1764|Keypad"
+digest = "98ed1580e58812075b4abb1044c8dc4c"
+
+[[suite.missions]]
+mission_key = "849|1764|Keypad"
+digest = "aba532fbd687f9e3b7bfe5e45c649b14"
+
+[[suite.missions]]
+mission_key = "960|1764|Keypad"
+digest = "908ce97d134b38fa6cfc0895b903bbf1"
+
+[suite.defuser_protocol]
+role = "defuser"
+communication_style = "sync"
+is_playing_alone = false
+include_manual = false
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.expert_protocol]
+role = "expert"
+communication_style = "sync"
+is_playing_alone = false
+include_manual = true
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.matchup]
+pairing_type = "with_self"
+
+[suite.manual_profile]
+include_frontmatter = false
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Wires"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BigButton"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Keypad"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Simon"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WhosOnFirst"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Memory"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Morse"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Venn"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WireSequence"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Maze"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Password"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "IndicatorWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BatteryWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "PortWidget"
+language = "en"
+
+[[suite]]
+name = "comm-keypad-sync"
+revision = 2
+modality = ["language", "vision"]
+missions_path = "configs/missions/keypad_10"
+manual_rule_seed = 1764
+suite_digest = "c1e2433ea876e62dfa36550e23e2ea86"
+frozen_at = "2026-10-02T11:20:17.25555Z"
+gptnt_version = "2.2.0"
+git_sha = "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936"
+
+[[suite.missions]]
+mission_key = "234|1764|Keypad"
+digest = "522e9d548fff61f229092b4d9aad9000"
+
+[[suite.missions]]
+mission_key = "286|1764|Keypad"
+digest = "9f5a8896fb2614e5689b59e47da958f6"
+
+[[suite.missions]]
+mission_key = "337|1764|Keypad"
+digest = "400080a407554854314fabc3cd6c4c1a"
+
+[[suite.missions]]
+mission_key = "561|1764|Keypad"
+digest = "65a3572fb9932750c5123d1a41d4fa2f"
+
+[[suite.missions]]
+mission_key = "563|1764|Keypad"
+digest = "56709780209209ae1c759bd18fe89ecd"
+
+[[suite.missions]]
+mission_key = "798|1764|Keypad"
+digest = "7aab54b8c0325fd7e636027c150d5f73"
+
+[[suite.missions]]
+mission_key = "813|1764|Keypad"
+digest = "03fd9c3551deb06ec96facc8c55eb734"
+
+[[suite.missions]]
+mission_key = "845|1764|Keypad"
+digest = "98ed1580e58812075b4abb1044c8dc4c"
+
+[[suite.missions]]
+mission_key = "849|1764|Keypad"
+digest = "aba532fbd687f9e3b7bfe5e45c649b14"
+
+[[suite.missions]]
+mission_key = "960|1764|Keypad"
+digest = "908ce97d134b38fa6cfc0895b903bbf1"
+
+[suite.defuser_protocol]
+role = "defuser"
+communication_style = "sync"
+is_playing_alone = false
+include_manual = false
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.expert_protocol]
+role = "expert"
+communication_style = "sync"
+is_playing_alone = false
+include_manual = true
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.matchup]
+pairing_type = "with_best_expert"
+
+[suite.manual_profile]
+include_frontmatter = false
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Wires"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BigButton"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Keypad"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Simon"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WhosOnFirst"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Memory"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Morse"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Venn"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WireSequence"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Maze"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Password"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "IndicatorWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BatteryWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "PortWidget"
+language = "en"
+
+[[suite]]
+name = "comm-pilot-async"
+revision = 1
+modality = ["language", "vision"]
+missions_path = "configs/missions/pilot_wires"
+manual_rule_seed = 1764
+suite_digest = "1bbfc5c302117d94d3b16d862cb8638b"
+frozen_at = "2026-10-02T11:12:46.755027Z"
+gptnt_version = "2.2.0"
+git_sha = "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936"
+
+[[suite.missions]]
+mission_key = "234|1764|Wires"
+digest = "e1cf8b1efc47ce0c3306825b2ee859b2"
+
+[[suite.missions]]
+mission_key = "286|1764|Wires"
+digest = "17b728d1e3af4438b8e2bdd057bc3154"
+
+[[suite.missions]]
+mission_key = "845|1764|Wires"
+digest = "4724a155203684c36674f998e4249846"
+
+[suite.defuser_protocol]
+role = "defuser"
+communication_style = "async"
+is_playing_alone = false
+include_manual = false
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.expert_protocol]
+role = "expert"
+communication_style = "async"
+is_playing_alone = false
+include_manual = true
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.matchup]
+pairing_type = "with_self"
+
+[suite.manual_profile]
+include_frontmatter = false
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Wires"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BigButton"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Keypad"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Simon"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WhosOnFirst"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Memory"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Morse"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Venn"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WireSequence"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Maze"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Password"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "IndicatorWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BatteryWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "PortWidget"
+language = "en"
+
+[[suite]]
+name = "comm-pilot-async"
+revision = 2
+modality = ["language", "vision"]
+missions_path = "configs/missions/pilot_wires"
+manual_rule_seed = 1764
+suite_digest = "b1b72948e8ac4747ab9861688ca274a9"
+frozen_at = "2026-10-02T11:20:17.25555Z"
+gptnt_version = "2.2.0"
+git_sha = "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936"
+
+[[suite.missions]]
+mission_key = "234|1764|Wires"
+digest = "e1cf8b1efc47ce0c3306825b2ee859b2"
+
+[[suite.missions]]
+mission_key = "286|1764|Wires"
+digest = "17b728d1e3af4438b8e2bdd057bc3154"
+
+[[suite.missions]]
+mission_key = "845|1764|Wires"
+digest = "4724a155203684c36674f998e4249846"
+
+[suite.defuser_protocol]
+role = "defuser"
+communication_style = "async"
+is_playing_alone = false
+include_manual = false
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.expert_protocol]
+role = "expert"
+communication_style = "async"
+is_playing_alone = false
+include_manual = true
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.matchup]
+pairing_type = "with_best_expert"
+
+[suite.manual_profile]
+include_frontmatter = false
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Wires"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BigButton"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Keypad"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Simon"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WhosOnFirst"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Memory"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Morse"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Venn"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WireSequence"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Maze"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Password"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "IndicatorWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BatteryWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "PortWidget"
+language = "en"
+
+[[suite]]
+name = "comm-pilot-sync"
+revision = 1
+modality = ["language", "vision"]
+missions_path = "configs/missions/pilot_wires"
+manual_rule_seed = 1764
+suite_digest = "da82cff6236b7a18054c8dc697d7e297"
+frozen_at = "2026-10-02T11:12:46.755027Z"
+gptnt_version = "2.2.0"
+git_sha = "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936"
+
+[[suite.missions]]
+mission_key = "234|1764|Wires"
+digest = "e1cf8b1efc47ce0c3306825b2ee859b2"
+
+[[suite.missions]]
+mission_key = "286|1764|Wires"
+digest = "17b728d1e3af4438b8e2bdd057bc3154"
+
+[[suite.missions]]
+mission_key = "845|1764|Wires"
+digest = "4724a155203684c36674f998e4249846"
+
+[suite.defuser_protocol]
+role = "defuser"
+communication_style = "sync"
+is_playing_alone = false
+include_manual = false
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.expert_protocol]
+role = "expert"
+communication_style = "sync"
+is_playing_alone = false
+include_manual = true
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.matchup]
+pairing_type = "with_self"
+
+[suite.manual_profile]
+include_frontmatter = false
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Wires"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BigButton"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Keypad"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Simon"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WhosOnFirst"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Memory"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Morse"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Venn"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WireSequence"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Maze"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Password"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "IndicatorWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BatteryWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "PortWidget"
+language = "en"
+
+[[suite]]
+name = "comm-pilot-sync"
+revision = 2
+modality = ["language", "vision"]
+missions_path = "configs/missions/pilot_wires"
+manual_rule_seed = 1764
+suite_digest = "1f81d18e1aadbd215eb557c41ae6911a"
+frozen_at = "2026-10-02T11:20:17.25555Z"
+gptnt_version = "2.2.0"
+git_sha = "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936"
+
+[[suite.missions]]
+mission_key = "234|1764|Wires"
+digest = "e1cf8b1efc47ce0c3306825b2ee859b2"
+
+[[suite.missions]]
+mission_key = "286|1764|Wires"
+digest = "17b728d1e3af4438b8e2bdd057bc3154"
+
+[[suite.missions]]
+mission_key = "845|1764|Wires"
+digest = "4724a155203684c36674f998e4249846"
+
+[suite.defuser_protocol]
+role = "defuser"
+communication_style = "sync"
+is_playing_alone = false
+include_manual = false
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.expert_protocol]
+role = "expert"
+communication_style = "sync"
+is_playing_alone = false
+include_manual = true
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.matchup]
+pairing_type = "with_best_expert"
+
+[suite.manual_profile]
+include_frontmatter = false
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Wires"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BigButton"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Keypad"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Simon"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WhosOnFirst"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Memory"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Morse"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Venn"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WireSequence"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Maze"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Password"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "IndicatorWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BatteryWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "PortWidget"
+language = "en"
+
+[[suite]]
+name = "comm-whosonfirst-async"
+revision = 1
+modality = ["language", "vision"]
+missions_path = "configs/missions/whosonfirst_10"
+manual_rule_seed = 1764
+suite_digest = "9c97f79fde60a8eb97d772d60ab7ccbd"
+frozen_at = "2026-10-02T11:12:46.755027Z"
+gptnt_version = "2.2.0"
+git_sha = "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936"
+
+[[suite.missions]]
+mission_key = "234|1764|WhosOnFirst"
+digest = "2762afbf693dac6085967bd85b8332fd"
+
+[[suite.missions]]
+mission_key = "286|1764|WhosOnFirst"
+digest = "92c71ae27c9854b5287f4e5f3f8f40f5"
+
+[[suite.missions]]
+mission_key = "337|1764|WhosOnFirst"
+digest = "69855c7e2359819cae973f65320ed3ec"
+
+[[suite.missions]]
+mission_key = "561|1764|WhosOnFirst"
+digest = "a32cb1fd8bcd432db91ea2a795c4b200"
+
+[[suite.missions]]
+mission_key = "563|1764|WhosOnFirst"
+digest = "f7a59244628e4a54afaf1784004207ae"
+
+[[suite.missions]]
+mission_key = "798|1764|WhosOnFirst"
+digest = "ce12c25edf15a6807ae1301a96c68ae2"
+
+[[suite.missions]]
+mission_key = "813|1764|WhosOnFirst"
+digest = "99d74635ef258a3c4a3f9b6da743bebc"
+
+[[suite.missions]]
+mission_key = "845|1764|WhosOnFirst"
+digest = "d677a79aedf933291ad6f294ae5d3707"
+
+[[suite.missions]]
+mission_key = "849|1764|WhosOnFirst"
+digest = "b516c9e8e1d2cab53b50e3d39c970595"
+
+[[suite.missions]]
+mission_key = "960|1764|WhosOnFirst"
+digest = "d0238955fa69aeeab92f0591d71e26d7"
+
+[suite.defuser_protocol]
+role = "defuser"
+communication_style = "async"
+is_playing_alone = false
+include_manual = false
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.expert_protocol]
+role = "expert"
+communication_style = "async"
+is_playing_alone = false
+include_manual = true
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.matchup]
+pairing_type = "with_self"
+
+[suite.manual_profile]
+include_frontmatter = false
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Wires"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BigButton"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Keypad"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Simon"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WhosOnFirst"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Memory"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Morse"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Venn"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WireSequence"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Maze"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Password"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "IndicatorWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BatteryWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "PortWidget"
+language = "en"
+
+[[suite]]
+name = "comm-whosonfirst-async"
+revision = 2
+modality = ["language", "vision"]
+missions_path = "configs/missions/whosonfirst_10"
+manual_rule_seed = 1764
+suite_digest = "ff066945da5c9cd1212965e1bc190984"
+frozen_at = "2026-10-02T11:20:17.25555Z"
+gptnt_version = "2.2.0"
+git_sha = "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936"
+
+[[suite.missions]]
+mission_key = "234|1764|WhosOnFirst"
+digest = "2762afbf693dac6085967bd85b8332fd"
+
+[[suite.missions]]
+mission_key = "286|1764|WhosOnFirst"
+digest = "92c71ae27c9854b5287f4e5f3f8f40f5"
+
+[[suite.missions]]
+mission_key = "337|1764|WhosOnFirst"
+digest = "69855c7e2359819cae973f65320ed3ec"
+
+[[suite.missions]]
+mission_key = "561|1764|WhosOnFirst"
+digest = "a32cb1fd8bcd432db91ea2a795c4b200"
+
+[[suite.missions]]
+mission_key = "563|1764|WhosOnFirst"
+digest = "f7a59244628e4a54afaf1784004207ae"
+
+[[suite.missions]]
+mission_key = "798|1764|WhosOnFirst"
+digest = "ce12c25edf15a6807ae1301a96c68ae2"
+
+[[suite.missions]]
+mission_key = "813|1764|WhosOnFirst"
+digest = "99d74635ef258a3c4a3f9b6da743bebc"
+
+[[suite.missions]]
+mission_key = "845|1764|WhosOnFirst"
+digest = "d677a79aedf933291ad6f294ae5d3707"
+
+[[suite.missions]]
+mission_key = "849|1764|WhosOnFirst"
+digest = "b516c9e8e1d2cab53b50e3d39c970595"
+
+[[suite.missions]]
+mission_key = "960|1764|WhosOnFirst"
+digest = "d0238955fa69aeeab92f0591d71e26d7"
+
+[suite.defuser_protocol]
+role = "defuser"
+communication_style = "async"
+is_playing_alone = false
+include_manual = false
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.expert_protocol]
+role = "expert"
+communication_style = "async"
+is_playing_alone = false
+include_manual = true
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.matchup]
+pairing_type = "with_best_expert"
+
+[suite.manual_profile]
+include_frontmatter = false
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Wires"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BigButton"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Keypad"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Simon"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WhosOnFirst"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Memory"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Morse"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Venn"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WireSequence"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Maze"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Password"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "IndicatorWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BatteryWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "PortWidget"
+language = "en"
+
+[[suite]]
+name = "comm-whosonfirst-sync"
+revision = 1
+modality = ["language", "vision"]
+missions_path = "configs/missions/whosonfirst_10"
+manual_rule_seed = 1764
+suite_digest = "a9ee62c1d80cc9a1ee250a2870c892d6"
+frozen_at = "2026-10-02T11:12:46.755027Z"
+gptnt_version = "2.2.0"
+git_sha = "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936"
+
+[[suite.missions]]
+mission_key = "234|1764|WhosOnFirst"
+digest = "2762afbf693dac6085967bd85b8332fd"
+
+[[suite.missions]]
+mission_key = "286|1764|WhosOnFirst"
+digest = "92c71ae27c9854b5287f4e5f3f8f40f5"
+
+[[suite.missions]]
+mission_key = "337|1764|WhosOnFirst"
+digest = "69855c7e2359819cae973f65320ed3ec"
+
+[[suite.missions]]
+mission_key = "561|1764|WhosOnFirst"
+digest = "a32cb1fd8bcd432db91ea2a795c4b200"
+
+[[suite.missions]]
+mission_key = "563|1764|WhosOnFirst"
+digest = "f7a59244628e4a54afaf1784004207ae"
+
+[[suite.missions]]
+mission_key = "798|1764|WhosOnFirst"
+digest = "ce12c25edf15a6807ae1301a96c68ae2"
+
+[[suite.missions]]
+mission_key = "813|1764|WhosOnFirst"
+digest = "99d74635ef258a3c4a3f9b6da743bebc"
+
+[[suite.missions]]
+mission_key = "845|1764|WhosOnFirst"
+digest = "d677a79aedf933291ad6f294ae5d3707"
+
+[[suite.missions]]
+mission_key = "849|1764|WhosOnFirst"
+digest = "b516c9e8e1d2cab53b50e3d39c970595"
+
+[[suite.missions]]
+mission_key = "960|1764|WhosOnFirst"
+digest = "d0238955fa69aeeab92f0591d71e26d7"
+
+[suite.defuser_protocol]
+role = "defuser"
+communication_style = "sync"
+is_playing_alone = false
+include_manual = false
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.expert_protocol]
+role = "expert"
+communication_style = "sync"
+is_playing_alone = false
+include_manual = true
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.matchup]
+pairing_type = "with_self"
+
+[suite.manual_profile]
+include_frontmatter = false
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Wires"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BigButton"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Keypad"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Simon"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WhosOnFirst"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Memory"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Morse"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Venn"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WireSequence"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Maze"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Password"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "IndicatorWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BatteryWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "PortWidget"
+language = "en"
+
+[[suite]]
+name = "comm-whosonfirst-sync"
+revision = 2
+modality = ["language", "vision"]
+missions_path = "configs/missions/whosonfirst_10"
+manual_rule_seed = 1764
+suite_digest = "0585111cf5cd10f12f86141b588ebea5"
+frozen_at = "2026-10-02T11:20:17.25555Z"
+gptnt_version = "2.2.0"
+git_sha = "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936"
+
+[[suite.missions]]
+mission_key = "234|1764|WhosOnFirst"
+digest = "2762afbf693dac6085967bd85b8332fd"
+
+[[suite.missions]]
+mission_key = "286|1764|WhosOnFirst"
+digest = "92c71ae27c9854b5287f4e5f3f8f40f5"
+
+[[suite.missions]]
+mission_key = "337|1764|WhosOnFirst"
+digest = "69855c7e2359819cae973f65320ed3ec"
+
+[[suite.missions]]
+mission_key = "561|1764|WhosOnFirst"
+digest = "a32cb1fd8bcd432db91ea2a795c4b200"
+
+[[suite.missions]]
+mission_key = "563|1764|WhosOnFirst"
+digest = "f7a59244628e4a54afaf1784004207ae"
+
+[[suite.missions]]
+mission_key = "798|1764|WhosOnFirst"
+digest = "ce12c25edf15a6807ae1301a96c68ae2"
+
+[[suite.missions]]
+mission_key = "813|1764|WhosOnFirst"
+digest = "99d74635ef258a3c4a3f9b6da743bebc"
+
+[[suite.missions]]
+mission_key = "845|1764|WhosOnFirst"
+digest = "d677a79aedf933291ad6f294ae5d3707"
+
+[[suite.missions]]
+mission_key = "849|1764|WhosOnFirst"
+digest = "b516c9e8e1d2cab53b50e3d39c970595"
+
+[[suite.missions]]
+mission_key = "960|1764|WhosOnFirst"
+digest = "d0238955fa69aeeab92f0591d71e26d7"
+
+[suite.defuser_protocol]
+role = "defuser"
+communication_style = "sync"
+is_playing_alone = false
+include_manual = false
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.expert_protocol]
+role = "expert"
+communication_style = "sync"
+is_playing_alone = false
+include_manual = true
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.matchup]
+pairing_type = "with_best_expert"
+
+[suite.manual_profile]
+include_frontmatter = false
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Wires"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BigButton"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Keypad"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Simon"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WhosOnFirst"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Memory"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Morse"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Venn"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WireSequence"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Maze"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Password"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "IndicatorWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BatteryWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "PortWidget"
+language = "en"
+
+[[suite]]
+name = "comm-wires-async"
+revision = 1
+modality = ["language", "vision"]
+missions_path = "configs/missions/wires_10"
+manual_rule_seed = 1764
+suite_digest = "70b14d2ebd1622a0afd796af9a32c3bf"
+frozen_at = "2026-10-02T11:12:46.755027Z"
+gptnt_version = "2.2.0"
+git_sha = "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936"
+
+[[suite.missions]]
+mission_key = "234|1764|Wires"
+digest = "e1cf8b1efc47ce0c3306825b2ee859b2"
+
+[[suite.missions]]
+mission_key = "286|1764|Wires"
+digest = "17b728d1e3af4438b8e2bdd057bc3154"
+
+[[suite.missions]]
+mission_key = "337|1764|Wires"
+digest = "53c513cb837aaa35cc4bb89d59bbf0ad"
+
+[[suite.missions]]
+mission_key = "561|1764|Wires"
+digest = "a59d5594ed18f9351a14452bf4ba7b4f"
+
+[[suite.missions]]
+mission_key = "563|1764|Wires"
+digest = "506e815843f7b145a10f7a6e60fb9034"
+
+[[suite.missions]]
+mission_key = "798|1764|Wires"
+digest = "06deb35a5624d6bb5b566726cd20c211"
+
+[[suite.missions]]
+mission_key = "813|1764|Wires"
+digest = "a382043354e11165d495dbd537d228d8"
+
+[[suite.missions]]
+mission_key = "845|1764|Wires"
+digest = "4724a155203684c36674f998e4249846"
+
+[[suite.missions]]
+mission_key = "849|1764|Wires"
+digest = "a3abd81bb07ffc322aeb02ff9b655262"
+
+[[suite.missions]]
+mission_key = "960|1764|Wires"
+digest = "ce43d7fbb1411d03d54c3a29a527ae41"
+
+[suite.defuser_protocol]
+role = "defuser"
+communication_style = "async"
+is_playing_alone = false
+include_manual = false
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.expert_protocol]
+role = "expert"
+communication_style = "async"
+is_playing_alone = false
+include_manual = true
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.matchup]
+pairing_type = "with_self"
+
+[suite.manual_profile]
+include_frontmatter = false
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Wires"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BigButton"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Keypad"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Simon"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WhosOnFirst"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Memory"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Morse"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Venn"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WireSequence"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Maze"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Password"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "IndicatorWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BatteryWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "PortWidget"
+language = "en"
+
+[[suite]]
+name = "comm-wires-async"
+revision = 2
+modality = ["language", "vision"]
+missions_path = "configs/missions/wires_10"
+manual_rule_seed = 1764
+suite_digest = "3f9166bb783f65a6c048af04d17a86f2"
+frozen_at = "2026-10-02T11:20:17.25555Z"
+gptnt_version = "2.2.0"
+git_sha = "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936"
+
+[[suite.missions]]
+mission_key = "234|1764|Wires"
+digest = "e1cf8b1efc47ce0c3306825b2ee859b2"
+
+[[suite.missions]]
+mission_key = "286|1764|Wires"
+digest = "17b728d1e3af4438b8e2bdd057bc3154"
+
+[[suite.missions]]
+mission_key = "337|1764|Wires"
+digest = "53c513cb837aaa35cc4bb89d59bbf0ad"
+
+[[suite.missions]]
+mission_key = "561|1764|Wires"
+digest = "a59d5594ed18f9351a14452bf4ba7b4f"
+
+[[suite.missions]]
+mission_key = "563|1764|Wires"
+digest = "506e815843f7b145a10f7a6e60fb9034"
+
+[[suite.missions]]
+mission_key = "798|1764|Wires"
+digest = "06deb35a5624d6bb5b566726cd20c211"
+
+[[suite.missions]]
+mission_key = "813|1764|Wires"
+digest = "a382043354e11165d495dbd537d228d8"
+
+[[suite.missions]]
+mission_key = "845|1764|Wires"
+digest = "4724a155203684c36674f998e4249846"
+
+[[suite.missions]]
+mission_key = "849|1764|Wires"
+digest = "a3abd81bb07ffc322aeb02ff9b655262"
+
+[[suite.missions]]
+mission_key = "960|1764|Wires"
+digest = "ce43d7fbb1411d03d54c3a29a527ae41"
+
+[suite.defuser_protocol]
+role = "defuser"
+communication_style = "async"
+is_playing_alone = false
+include_manual = false
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.expert_protocol]
+role = "expert"
+communication_style = "async"
+is_playing_alone = false
+include_manual = true
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.matchup]
+pairing_type = "with_best_expert"
+
+[suite.manual_profile]
+include_frontmatter = false
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Wires"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BigButton"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Keypad"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Simon"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WhosOnFirst"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Memory"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Morse"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Venn"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WireSequence"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Maze"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Password"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "IndicatorWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BatteryWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "PortWidget"
+language = "en"
+
+[[suite]]
+name = "comm-wires-sync"
+revision = 1
+modality = ["language", "vision"]
+missions_path = "configs/missions/wires_10"
+manual_rule_seed = 1764
+suite_digest = "cc8f310bcd0bb849689182c67afed166"
+frozen_at = "2026-10-02T11:12:46.755027Z"
+gptnt_version = "2.2.0"
+git_sha = "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936"
+
+[[suite.missions]]
+mission_key = "234|1764|Wires"
+digest = "e1cf8b1efc47ce0c3306825b2ee859b2"
+
+[[suite.missions]]
+mission_key = "286|1764|Wires"
+digest = "17b728d1e3af4438b8e2bdd057bc3154"
+
+[[suite.missions]]
+mission_key = "337|1764|Wires"
+digest = "53c513cb837aaa35cc4bb89d59bbf0ad"
+
+[[suite.missions]]
+mission_key = "561|1764|Wires"
+digest = "a59d5594ed18f9351a14452bf4ba7b4f"
+
+[[suite.missions]]
+mission_key = "563|1764|Wires"
+digest = "506e815843f7b145a10f7a6e60fb9034"
+
+[[suite.missions]]
+mission_key = "798|1764|Wires"
+digest = "06deb35a5624d6bb5b566726cd20c211"
+
+[[suite.missions]]
+mission_key = "813|1764|Wires"
+digest = "a382043354e11165d495dbd537d228d8"
+
+[[suite.missions]]
+mission_key = "845|1764|Wires"
+digest = "4724a155203684c36674f998e4249846"
+
+[[suite.missions]]
+mission_key = "849|1764|Wires"
+digest = "a3abd81bb07ffc322aeb02ff9b655262"
+
+[[suite.missions]]
+mission_key = "960|1764|Wires"
+digest = "ce43d7fbb1411d03d54c3a29a527ae41"
+
+[suite.defuser_protocol]
+role = "defuser"
+communication_style = "sync"
+is_playing_alone = false
+include_manual = false
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.expert_protocol]
+role = "expert"
+communication_style = "sync"
+is_playing_alone = false
+include_manual = true
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.matchup]
+pairing_type = "with_self"
+
+[suite.manual_profile]
+include_frontmatter = false
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Wires"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BigButton"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Keypad"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Simon"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WhosOnFirst"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Memory"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Morse"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Venn"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WireSequence"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Maze"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Password"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "IndicatorWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BatteryWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "PortWidget"
+language = "en"
+
+[[suite]]
+name = "comm-wires-sync"
+revision = 2
+modality = ["language", "vision"]
+missions_path = "configs/missions/wires_10"
+manual_rule_seed = 1764
+suite_digest = "5f1a1ac3476d7289079a0544b71b7662"
+frozen_at = "2026-10-02T11:20:17.25555Z"
+gptnt_version = "2.2.0"
+git_sha = "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936"
+
+[[suite.missions]]
+mission_key = "234|1764|Wires"
+digest = "e1cf8b1efc47ce0c3306825b2ee859b2"
+
+[[suite.missions]]
+mission_key = "286|1764|Wires"
+digest = "17b728d1e3af4438b8e2bdd057bc3154"
+
+[[suite.missions]]
+mission_key = "337|1764|Wires"
+digest = "53c513cb837aaa35cc4bb89d59bbf0ad"
+
+[[suite.missions]]
+mission_key = "561|1764|Wires"
+digest = "a59d5594ed18f9351a14452bf4ba7b4f"
+
+[[suite.missions]]
+mission_key = "563|1764|Wires"
+digest = "506e815843f7b145a10f7a6e60fb9034"
+
+[[suite.missions]]
+mission_key = "798|1764|Wires"
+digest = "06deb35a5624d6bb5b566726cd20c211"
+
+[[suite.missions]]
+mission_key = "813|1764|Wires"
+digest = "a382043354e11165d495dbd537d228d8"
+
+[[suite.missions]]
+mission_key = "845|1764|Wires"
+digest = "4724a155203684c36674f998e4249846"
+
+[[suite.missions]]
+mission_key = "849|1764|Wires"
+digest = "a3abd81bb07ffc322aeb02ff9b655262"
+
+[[suite.missions]]
+mission_key = "960|1764|Wires"
+digest = "ce43d7fbb1411d03d54c3a29a527ae41"
+
+[suite.defuser_protocol]
+role = "defuser"
+communication_style = "sync"
+is_playing_alone = false
+include_manual = false
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.expert_protocol]
+role = "expert"
+communication_style = "sync"
+is_playing_alone = false
+include_manual = true
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.matchup]
+pairing_type = "with_best_expert"
+
+[suite.manual_profile]
+include_frontmatter = false
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Wires"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BigButton"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Keypad"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Simon"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WhosOnFirst"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Memory"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Morse"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Venn"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WireSequence"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Maze"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Password"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "IndicatorWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BatteryWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "PortWidget"
+language = "en"
+
+[[suite]]
 name = "multi-self-async"
 revision = 1
 modality = ["language", "vision"]
@@ -505,6 +2745,117 @@ allow_message_output = true
 [suite.expert_protocol]
 role = "expert"
 communication_style = "sync"
+is_playing_alone = false
+include_manual = true
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.matchup]
+pairing_type = "with_self"
+
+[suite.manual_profile]
+include_frontmatter = false
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Wires"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BigButton"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Keypad"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Simon"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WhosOnFirst"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Memory"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Morse"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Venn"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "WireSequence"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Maze"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "Password"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "IndicatorWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "BatteryWidget"
+language = "en"
+
+[[suite.manual_profile.documents]]
+source = "ktanecontent"
+id = "PortWidget"
+language = "en"
+
+[[suite]]
+name = "one-wires-async"
+revision = 1
+modality = ["language", "vision"]
+missions_path = "configs/missions/one_wires"
+manual_rule_seed = 1
+suite_digest = "2e15bd13f12ab65f0bdca80394c7e6e2"
+frozen_at = "2026-10-01T20:33:05.412348Z"
+gptnt_version = "2.2.0"
+git_sha = "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936"
+
+[[suite.missions]]
+mission_key = "845|1|Wires"
+digest = "1737a02ab352b34a21fa067f3ac46d8d"
+
+[suite.defuser_protocol]
+role = "defuser"
+communication_style = "async"
+is_playing_alone = false
+include_manual = false
+receive_feedback_after_action = false
+allow_magic_actions = false
+allow_lottery_actions = false
+allow_message_output = true
+
+[suite.expert_protocol]
+role = "expert"
+communication_style = "async"
 is_playing_alone = false
 include_manual = true
 receive_feedback_after_action = false

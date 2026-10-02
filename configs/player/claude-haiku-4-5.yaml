@@ -1,0 +1,29 @@
+# @package player
+
+defaults:
+  - _self_
+
+identity:
+  display_name: Claude Haiku 4.5
+  organisation: Anthropic
+  is_os_model: false
+  url: https://www.anthropic.com/claude/haiku
+
+capabilities:
+  player_name: claude-haiku-4-5
+  tokens_per_image: 417
+  thinking_method: thinking-out-loud
+  structured_output_mode: null
+  include_schema_in_instructions: true
+  interaction_location_method: set-of-marks
+  usage_limits:
+    input_tokens_limit: 200000
+    output_tokens_limit: 64000
+
+action_predictor:
+  agent:
+    model:
+      _target_: pydantic_ai.models.anthropic.AnthropicModel
+      model_name: claude-haiku-4-5
+    model_settings:
+      thinking: false

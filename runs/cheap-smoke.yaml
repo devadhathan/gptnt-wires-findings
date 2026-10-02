@@ -1,0 +1,19 @@
+# Cheap vision smoke: GPT-4.1 Nano vs Claude Haiku 4.5
+#
+#     gptnt doctor runs/cheap-smoke.yaml
+#     gptnt generate runs/cheap-smoke.yaml
+#     gptnt run runs/cheap-smoke.yaml
+
+spec_version: 2
+suites:
+  - one-wires-sync
+rooms: 1
+
+players:
+  - player: gpt-4-1-nano
+    count: 2  # need 2 for same-model self-play (defuser+expert)
+  - player: claude-haiku-4-5
+    count: 2
+
+source: local
+observability: limited

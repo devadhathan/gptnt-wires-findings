@@ -1,0 +1,17 @@
+# OpenAI (gpt-5-2) vs Anthropic (claude-sonnet-4-6) on a small wires suite.
+#
+#     gptnt doctor runs/my-models.yaml
+#     gptnt generate runs/my-models.yaml
+#     gptnt run runs/my-models.yaml
+
+spec_version: 2
+suites:
+  - one-wires-sync
+rooms: 1
+
+players:
+  - player: gpt-5-2
+  - player: claude-sonnet-4-6
+
+source: local
+observability: limited

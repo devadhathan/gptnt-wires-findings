@@ -1,0 +1,19 @@
+# Wires phase: 10 missions × sync + async × 3 attempts = 60 games per condition.
+# Defuser = GPT-5.2, Expert = Claude Haiku 4.5.
+
+spec_version: 2
+suites:
+  - comm-wires-sync
+  - comm-wires-async
+rooms: 1
+
+players:
+  - player: gpt-5-2
+  - player: claude-haiku-4-5
+
+anchors:
+  best_expert: claude-haiku-4-5
+
+attempts_per_mission: 3
+source: local
+observability: limited

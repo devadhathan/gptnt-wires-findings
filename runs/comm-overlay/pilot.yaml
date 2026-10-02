@@ -1,0 +1,27 @@
+# Communication-overlay pilot (cost + logging check).
+# Defuser = GPT-5.2, Expert = Claude Haiku 4.5 (anchor).
+# 3 Wires missions × sync + async × 2 attempts = 12 games per prompt condition.
+#
+#     scripts/language_collab/run_pilot.sh
+# Or:
+#     apply_overlays.py restore|apply
+#     gptnt doctor runs/comm-overlay/pilot.yaml
+#     gptnt generate runs/comm-overlay/pilot.yaml --force
+#     gptnt run runs/comm-overlay/pilot.yaml --force
+
+spec_version: 2
+suites:
+  - comm-pilot-sync
+  - comm-pilot-async
+rooms: 1
+
+players:
+  - player: gpt-5-2
+  - player: claude-haiku-4-5
+
+anchors:
+  best_expert: claude-haiku-4-5
+
+attempts_per_mission: 2
+source: local
+observability: limited

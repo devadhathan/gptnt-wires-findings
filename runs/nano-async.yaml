@@ -1,0 +1,17 @@
+# Nano self-play with async communication on the one-wires mission.
+#
+#     gptnt doctor runs/nano-async.yaml
+#     gptnt generate runs/nano-async.yaml
+#     gptnt run runs/nano-async.yaml
+
+spec_version: 2
+suites:
+  - one-wires-async
+rooms: 1
+
+players:
+  - player: gpt-4-1-nano
+    count: 2  # defuser + expert self-play
+
+source: local
+observability: limited

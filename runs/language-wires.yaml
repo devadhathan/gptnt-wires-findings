@@ -1,0 +1,24 @@
+# Language-overlay experiment: Haiku self-play on one-wires sync (seed 845).
+#
+# Overlays must be applied first:
+#     .venv/bin/python scripts/language_collab/apply_overlays.py apply
+#
+# Then:
+#     gptnt generate runs/language-wires.yaml
+#     gptnt run runs/language-wires.yaml --force
+#
+# Restore stock prompts after:
+#     .venv/bin/python scripts/language_collab/apply_overlays.py restore
+
+spec_version: 2
+suites:
+  - one-wires-sync
+rooms: 1
+
+players:
+  - player: claude-haiku-4-5
+    count: 2
+
+attempts_per_mission: 2
+source: local
+observability: limited

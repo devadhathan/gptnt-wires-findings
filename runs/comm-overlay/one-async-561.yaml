@@ -1,0 +1,19 @@
+# Single-game smoke: async Wires seed 561 attempt 1 only.
+# Specs are filtered to that mission after generate (see run notes).
+# Defuser = GPT-5.2, Expert = Claude Haiku 4.5.
+
+spec_version: 2
+suites:
+  - comm-wires-async
+rooms: 1
+
+players:
+  - player: gpt-5-2
+  - player: claude-haiku-4-5
+
+anchors:
+  best_expert: claude-haiku-4-5
+
+attempts_per_mission: 1
+source: local
+observability: limited
