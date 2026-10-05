@@ -10,7 +10,12 @@ failed games get a single failure_type. Label meanings (one line each):
 
   solve_type
     grounded          — Colour order matched oracle (and cut was correct when recorded).
-    cancelled_errors  — Colour order was wrong, but the cut still hit the true wire.
+    rule_robust       — Wrong description, but the manual rule on that description still
+                        picks the same wire (ordinal) as the true bomb.
+    redundancy_rescue — Rule on the wrong description points elsewhere, but the Expert
+                        also named a colour and the Defuser cut the correct wire by colour.
+    other             — Solved with a wrong description; neither rule_robust nor
+                        redundancy_rescue.
     recovered_win     — Struck after a bad cut, then cut the right wire and solved.
     cut_slot_mismatch — Solved, but the first recorded cut ≠ seeded answer (rare).
     uncategorized_solve — Solved, but grounding/cut record incomplete (should stay rare).
@@ -524,12 +529,23 @@ def _ordinal_to_slot(entries: list[dict[str, Any]], which: str) -> int | None:
     return None
 
 
-def _correct_slot_rule_seed_1764(bomb: dict[str, Any] | None) -> str:
-    """Oracle slot the seeded manual says to cut for TRUE bomb_state (rule_seed 1764)."""
-    entries = _oracle_wire_entries(bomb)
-    if not entries:
+def _rule_slot_1764(
+    colours: list[str],
+    *,
+    empty_port_plate: bool = False,
+    positions: list[int] | None = None,
+) -> str:
+    """Apply rule_seed 1764 to a top→bottom colour list; return the chosen slot index."""
+    if not colours:
         return ""
-    colours = [e["color"] for e in entries]
+    if positions is None:
+        positions = list(range(len(colours)))
+    if len(positions) != len(colours):
+        return ""
+    entries = [
+        {"position": int(p), "color": c, "is_cut": False}
+        for p, c in zip(positions, colours, strict=True)
+    ]
     n = len(colours)
 
     def slot_for(which: str) -> str:
@@ -551,7 +567,7 @@ def _correct_slot_rule_seed_1764(bomb: dict[str, Any] | None) -> str:
         # 2 >1 red and no blue → last red
         # 3 exactly 1 white → the white
         # else last
-        if colours[-1] == "black" and _has_empty_port_plate(bomb):
+        if colours[-1] == "black" and empty_port_plate:
             return slot_for("second")
         if colours.count("red") > 1 and colours.count("blue") == 0:
             reds = [e["position"] for e in entries if e["color"] == "red"]
@@ -566,12 +582,87 @@ def _correct_slot_rule_seed_1764(bomb: dict[str, Any] | None) -> str:
     return ""
 
 
+def _correct_slot_rule_seed_1764(bomb: dict[str, Any] | None) -> str:
+    """Oracle slot the seeded manual says to cut for TRUE bomb_state (rule_seed 1764)."""
+    entries = _oracle_wire_entries(bomb)
+    if not entries:
+        return ""
+    return _rule_slot_1764(
+        [e["color"] for e in entries],
+        empty_port_plate=_has_empty_port_plate(bomb),
+        positions=[int(e["position"]) for e in entries],
+    )
+
+
+def _slot_ordinal(positions: list[int], slot: str) -> int | None:
+    if not slot:
+        return None
+    try:
+        s = int(slot)
+    except ValueError:
+        return None
+    try:
+        return positions.index(s)
+    except ValueError:
+        return None
+
+
+def _cancelled_error_subtype(
+    *,
+    described_wires: str,
+    bomb_for_rules: dict[str, Any] | None,
+    correct_slot: str,
+    cut_slot: str,
+    instruction_has_colour: str,
+) -> str:
+    """Split former cancelled_errors into rule_robust / redundancy_rescue / other."""
+    colours = [c.strip() for c in (described_wires or "").split(",") if c.strip()]
+    if not colours:
+        return "other"
+
+    oracle_entries = _oracle_wire_entries(bomb_for_rules)
+    oracle_positions = [int(e["position"]) for e in oracle_entries] if oracle_entries else []
+    # Same wire count → reuse oracle slot indices so rule output is comparable to cut_slot.
+    if oracle_positions and len(oracle_positions) == len(colours):
+        desc_positions = oracle_positions
+    else:
+        desc_positions = list(range(len(colours)))
+
+    described_slot = _rule_slot_1764(
+        colours,
+        empty_port_plate=_has_empty_port_plate(bomb_for_rules),
+        positions=desc_positions,
+    )
+    if not described_slot or not correct_slot:
+        # Can't evaluate the rule on the description (e.g. 4/5-wire) → other.
+        if instruction_has_colour == "True" and cut_slot and cut_slot == correct_slot:
+            return "redundancy_rescue"
+        return "other"
+
+    desc_ord = _slot_ordinal(desc_positions, described_slot)
+    true_ord = _slot_ordinal(oracle_positions, correct_slot) if oracle_positions else None
+    if desc_ord is not None and true_ord is not None and desc_ord == true_ord:
+        return "rule_robust"
+    if (
+        instruction_has_colour == "True"
+        and cut_slot
+        and correct_slot
+        and cut_slot == correct_slot
+    ):
+        return "redundancy_rescue"
+    return "other"
+
+
 def _solve_type(
     outcome: str,
     grounding_order_match: str,
     cut_slot: str,
     correct_slot: str,
     recovered_after_strike: str,
+    *,
+    described_wires: str = "",
+    bomb_for_rules: dict[str, Any] | None = None,
+    instruction_has_colour: str = "",
 ) -> str:
     """Classify every solved game into exactly one label; empty only if not solved."""
     if outcome != "solved":
@@ -586,7 +677,13 @@ def _solve_type(
     if grounding_order_match == "True":
         return "grounded"
     if grounding_order_match == "False":
-        return "cancelled_errors"
+        return _cancelled_error_subtype(
+            described_wires=described_wires,
+            bomb_for_rules=bomb_for_rules,
+            correct_slot=correct_slot,
+            cut_slot=cut_slot,
+            instruction_has_colour=instruction_has_colour,
+        )
     # Solved, but grounding parse / cut record both incomplete.
     return "uncategorized_solve"
 
@@ -1120,12 +1217,16 @@ def summarise_run(run_dir: Path) -> list[dict[str, Any]]:
             expert.steps if expert else None,
             correct_slot,
         )
+        instruction_has_colour = _instruction_has_colour(expert_cut_msg)
         solve_type = _solve_type(
             outcome,
             ground.get("grounding_order_match", ""),
             cut_slot,
             correct_slot,
             strike_metrics["recovered_after_strike"],
+            described_wires=ground.get("described_wires", "") or "",
+            bomb_for_rules=bomb_for_rules,
+            instruction_has_colour=instruction_has_colour,
         )
         failure_type = _failure_type(
             outcome,
@@ -1185,7 +1286,7 @@ def summarise_run(run_dir: Path) -> list[dict[str, Any]]:
                 "correct_slot": correct_slot,
                 "solve_type": solve_type,
                 "described_before_zoom": zoom_metrics["described_before_zoom"],
-                "instruction_has_colour": _instruction_has_colour(expert_cut_msg),
+                "instruction_has_colour": instruction_has_colour,
                 "redescribed_after_zoom": zoom_metrics["redescribed_after_zoom"],
                 "redescription_changed": zoom_metrics["redescription_changed"],
                 "false_solve_claim": strike_metrics["false_solve_claim"],

@@ -1,3 +1,5 @@
+Independent Wires communication findings: [FINDINGS.md](FINDINGS.md)
+
 <div align='center'>
 
 # GPTNT
