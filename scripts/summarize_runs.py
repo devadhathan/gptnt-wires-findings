@@ -5,10 +5,24 @@ Reads experiment-*.parquet (+ optional run_meta.json). Includes grounding checks
 whether the Defuser's last wire-colour description before the deciding cut matches
 oracle bomb_state (count, colours, order). Unclear parses are marked unparsed.
 Also tracks post-strike recovery and false-solve claims (Defuser reports green /
-solved while Wires.isSolved is still False). Failed games get a single
-failure_type label (false_solve_claim / module_misid / never_cut /
-wrong_cut_no_recovery). Failed / crashed / incomplete sessions are kept as
-rows with a reason.
+solved while Wires.isSolved is still False). Solved games get a solve_type;
+failed games get a single failure_type. Label meanings (one line each):
+
+  solve_type
+    grounded          — Colour order matched oracle (and cut was correct when recorded).
+    cancelled_errors  — Colour order was wrong, but the cut still hit the true wire.
+    recovered_win     — Struck after a bad cut, then cut the right wire and solved.
+    cut_slot_mismatch — Solved, but the first recorded cut ≠ seeded answer (rare).
+    uncategorized_solve — Solved, but grounding/cut record incomplete (should stay rare).
+
+  failure_type
+    false_solve_claim — Defuser said solved/green while Wires.isSolved was still False.
+    other_module_talk — Chat mentioned a different module type on a Wires-only bomb;
+                        does not by itself mean the Expert applied the wrong rules.
+    never_cut         — No wire was ever cut before timeout / end.
+    struck_no_fix — Cut a wrong wire (strike) and never made the correct cut.
+
+Failed / crashed / incomplete sessions are kept as rows with a reason.
 """
 
 from __future__ import annotations
@@ -553,15 +567,28 @@ def _correct_slot_rule_seed_1764(bomb: dict[str, Any] | None) -> str:
 
 
 def _solve_type(
-    grounding_order_match: str, cut_slot: str, correct_slot: str
+    outcome: str,
+    grounding_order_match: str,
+    cut_slot: str,
+    correct_slot: str,
+    recovered_after_strike: str,
 ) -> str:
-    if not cut_slot or not correct_slot:
+    """Classify every solved game into exactly one label; empty only if not solved."""
+    if outcome != "solved":
         return ""
-    if cut_slot != correct_slot:
-        return "wrong_cut"
+    # Mistake-then-fix wins: do not call these "wrong_cut".
+    if recovered_after_strike == "True":
+        return "recovered_win"
+    if cut_slot and correct_slot and cut_slot != correct_slot:
+        return "cut_slot_mismatch"
+    # Prefer grounding when the cut slot was not recorded (e.g. defuser steps
+    # missing from the parquet) but the colour order matched and the bomb solved.
     if grounding_order_match == "True":
         return "grounded"
-    return "cancelled_errors"
+    if grounding_order_match == "False":
+        return "cancelled_errors"
+    # Solved, but grounding parse / cut record both incomplete.
+    return "uncategorized_solve"
 
 
 def _wires_in_focus(bomb: dict[str, Any] | None) -> bool:
@@ -751,26 +778,27 @@ def _failure_type(
     if outcome == "solved":
         return ""
 
-    # Priority order matches the mid-run failure taxonomy.
+    # Priority order matches the failure taxonomy (see module docstring).
     if false_solve_claim == "True":
         return "false_solve_claim"
 
     blob = _dialogue_blob(expert_steps) + "\n" + _dialogue_blob(defuser_steps)
     if MODULE_MISID_RE.search(blob):
-        return "module_misid"
+        # Not "description was wrong" — only that other-module talk appeared.
+        return "other_module_talk"
 
     cut_happened = _any_wire_cut(defuser_steps)
     if not cut_happened:
         # Expert gave a cut, or game just stalled with no cut at all.
         return "never_cut"
 
-    # Wrong cut (strike) and never recovered — includes exploratory top-wire probes.
+    # Struck then never recovered — includes exploratory top-wire probes.
     if steps_after_first_strike and recovered_after_strike != "True":
-        return "wrong_cut_no_recovery"
+        return "struck_no_fix"
 
     # Timed out after cutting something but no strike recorded / odd edge cases.
     if expert_cut_msg and recovered_after_strike != "True":
-        return "wrong_cut_no_recovery"
+        return "struck_no_fix"
 
     return "never_cut"
 
@@ -1078,9 +1106,6 @@ def summarise_run(run_dir: Path) -> list[dict[str, Any]]:
             if str(rule_seed) == "1764"
             else ""
         )
-        solve_type = _solve_type(
-            ground.get("grounding_order_match", ""), cut_slot, correct_slot
-        )
         zoom_metrics = (
             _wire_description_zoom_metrics(defuser.steps, cut_action_ts)
             if defuser
@@ -1094,6 +1119,13 @@ def summarise_run(run_dir: Path) -> list[dict[str, Any]]:
             defuser.steps if defuser else None,
             expert.steps if expert else None,
             correct_slot,
+        )
+        solve_type = _solve_type(
+            outcome,
+            ground.get("grounding_order_match", ""),
+            cut_slot,
+            correct_slot,
+            strike_metrics["recovered_after_strike"],
         )
         failure_type = _failure_type(
             outcome,

@@ -57,6 +57,16 @@ scripts/language_collab/run_phase.sh overlay runs/comm-overlay/full-wires.yaml
 - **H3:** Larger on Keypad / Who's On First than Wires.
 - **H4:** Fewer false confirmations / leading-question traps.
 
+## Overlay text freeze (fair test)
+
+The one-game `grounded_repair` smoke on async Wires-561 does **not** count toward results: overlay wording was changed after watching it. That run is practice only.
+
+Before the real overlay arm:
+
+1. Leave `scripts/language_collab/overlays/grounded_repair/{expert,defuser}.md` frozen — no edits mid-arm.
+2. Include bomb **561** again under that frozen text (same seed the smoke used).
+3. Score only games played after the freeze.
+
 ## After any overlay run
 
 ```bash

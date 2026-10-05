@@ -12,6 +12,8 @@ Official GPTNT runs only. Hybrid router is deprecated for this line of work.
 
 See `STOCK_VS_OVERLAY.md` for the exact diff vs stock.
 
+`grounded_repair` smoke games are practice only. Freeze overlay text before the scored overlay arm; replay seed 561 under that freeze (see `EXPERIMENT.md`).
+
 ## Experiment manifests
 
 Pairing: **GPT-5.2 Defuser** × **Haiku 4.5 Expert** (`with_best_expert`).
