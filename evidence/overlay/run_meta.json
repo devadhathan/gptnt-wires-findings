@@ -1,0 +1,14 @@
+{
+  "written_at": "2026-10-05T14:44:23.425107+00:00",
+  "condition": "grounded_repair",
+  "condition_detected_from_prompts": "grounded_repair",
+  "manifest": "runs/comm-overlay/async-overlay-10.yaml",
+  "git_commit": "be36fdd31a1d6587034c5fabaaa83617bcad8332",
+  "prompt_hashes": {
+    "storage/prompts/requirements_communication_defuser.md": "sha256:cef3f16a7aa275e0ea66d7bee97d092d05b6f36bbd109c09a58279838d9d6bad",
+    "storage/prompts/requirements_communication_expert.md": "sha256:d1a9f648904321257561a07ab08a9897377993a180dabce2ba2c2e1f011b40c3"
+  },
+  "prompt_hash_combined": "sha256:9061fc5a90850b8a5bb771e0fc5e6c8522aca738daf781ae705351c4e59966a0",
+  "overlay_marker": "### Grounded repair (experimental overlay)",
+  "notes": null
+}

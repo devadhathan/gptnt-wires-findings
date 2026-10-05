@@ -1,0 +1,14 @@
+{
+  "written_at": "2026-10-02T13:09:38.474279+00:00",
+  "condition": "stock",
+  "condition_detected_from_prompts": "stock",
+  "manifest": "runs/comm-overlay/full-wires.yaml",
+  "git_commit": "3b6d97472e6f4a1b6756c7d689ef0e62d1ccd936",
+  "prompt_hashes": {
+    "storage/prompts/requirements_communication_defuser.md": "sha256:1852a72379b1b48b245c287e976a71c159b732c28f4cf443b99c1c51cc467130",
+    "storage/prompts/requirements_communication_expert.md": "sha256:3ed81bb6a73b8b42aa8e9e0d8ab3fbb93e3f867c96b244a2fb5f30c6035f574c"
+  },
+  "prompt_hash_combined": "sha256:fd2f3b4245135480c3d39b83051e91821572fb01c90aa9d521a99c0ad683d8e6",
+  "overlay_marker": "### Language discipline (experimental overlay)",
+  "notes": null
+}

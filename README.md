@@ -1,8 +1,10 @@
-# Success Without Grounding: What GPTNT Wires Scores Hide
+# Success Without Grounding in GPTNT Wires
 
 Independent research on [GPTNT](https://github.com/GPTNT/gptnt) (Parekh et al., 2026; [arXiv 2606.28514](https://arxiv.org/abs/2606.28514)). Two AI agents play *Keep Talking and Nobody Explodes* — a Defuser that sees the bomb and an Expert that reads the manual. **Not affiliated with the GPTNT authors.**
 
 **Author:** Devadhathan Maruthamangalam Dharmatheja · Edinburgh · October 2026
+
+**Scope:** these are **single-module Wires missions** (sync and async), not the full multi-module bombs behind the paper's headline that no model defuses a bomb in real time. This study is not disputing that result.
 
 **Full write-up:** [FINDINGS.md](FINDINGS.md)
 
@@ -35,6 +37,10 @@ Leaderboard-style solve rate treats “bomb defused” as success. On Wires, man
 
 So a high solve rate can hide a broken shared picture of the bomb. This repo scores every game against `bomb_state` and splits wins into `grounded` / `cancelled_errors` / `recovered_win`.
 
+### Perception is the trigger; missing verification is the finding
+
+Wires are only a few pixels thick in a 640×480 frame. GPT-5.2 often mis-sees them — especially the top wire. That perception error is the **trigger**. The **finding** is what follows: neither agent checks, doubts, or notices; they rarely re-describe after zooming; they almost never recover after a strike; and post-game reflections often call the dialogue accurate when it was not.
+
 ![Wires module (seed 234), enlarged crop](figures/top_wire_seed234.png)
 
 *Example: top wire on a 6-wire module is easy to miss against the dark backing and Set-of-Marks outline.*
@@ -46,6 +52,7 @@ So a high solve rate can hide a broken shared picture of the bomb. This repo sco
 | Path | What it is |
 | --- | --- |
 | [FINDINGS.md](FINDINGS.md) | Full results, labels, limitations, cost |
+| [evidence/](evidence/) | Summary CSVs + chat transcripts for quoted / handcheck games |
 | [figures/top_wire_seed234.png](figures/top_wire_seed234.png) | Enlarged Wires crop used in the write-up |
 | [handcheck/](handcheck/) | 20-game blind labelling sheet + SoM / crop / post-cut images |
 | [scripts/summarize_runs.py](scripts/summarize_runs.py) | Scorer: grounding match, solve types, rule_robust / redundancy_rescue split |
@@ -53,7 +60,7 @@ So a high solve rate can hide a broken shared picture of the bomb. This repo sco
 | [scripts/language_collab/overlays/grounded_repair/](scripts/language_collab/overlays/grounded_repair/) | Prompt-only Defuser/Expert append |
 | [runs/comm-overlay/](runs/comm-overlay/) | Manifests used for stock / overlay arms |
 
-Run outputs (`output/`) are **not** committed (gitignored). Summary CSVs live under `output/comm-overlay/` locally after you re-run or restore artifacts.
+Full observation parquets under `output/` stay **gitignored** (large). Counts in FINDINGS can be checked from `evidence/` without re-running.
 
 ---
 
@@ -63,7 +70,7 @@ Run outputs (`output/`) are **not** committed (gitignored). Summary CSVs live un
 | --- | --- |
 | Defuser | GPT-5.2 (thinking off) |
 | Expert | Claude Haiku 4.5 (thinking off) |
-| Module | Wires only (`wires_10`, rule seed 1764) |
+| Module | Wires only (`wires_10`, rule seed 1764), **single-module missions** |
 | Games | 60 stock (sync+async × 10 missions × 3 attempts) + 10 matched async overlay |
 | Sampling | Temperature 0.6, max 1000 tokens, prompt caching **off** |
 
@@ -82,6 +89,7 @@ Stock prompts were verified unchanged (`gptnt doctor`, empty prompt diff). Overl
 
 3. Apply / revert the `grounded_repair` overlay via `scripts/language_collab/` (see `EXPERIMENT.md` / `PROTOCOL.md` there).
 4. Hand-label from [handcheck/handcheck_sheet.md](handcheck/handcheck_sheet.md) — fill `MY LABEL` / `MY NOTE` only; automatic CSV labels are intentionally omitted from the sheet.
+5. Or re-check published numbers from [`evidence/`](evidence/) summary CSVs and transcripts.
 
 ---
 
@@ -91,7 +99,7 @@ If you use this analysis, cite GPTNT as the benchmark, and optionally this repos
 
 ```
 Parekh et al. GPTNT (2026). https://arxiv.org/abs/2606.28514
-Devadhathan Maruthamangalam Dharmatheja. Success Without Grounding (2026).
+Devadhathan Maruthamangalam Dharmatheja. Success Without Grounding in GPTNT Wires (2026).
 https://github.com/devadhathan/gptnt-wires-findings
 ```
 
@@ -99,7 +107,7 @@ https://github.com/devadhathan/gptnt-wires-findings
 
 ## Licence / upstream
 
-This tree includes GPTNT source for experiment tooling. Benchmark licence and authorship remain with the GPTNT authors — see their [LICENSE](LICENSE) and [README](https://github.com/GPTNT/gptnt). The findings write-up and handcheck materials in this fork are independent research notes.
+This repository is a fork of [GPTNT/gptnt](https://github.com/GPTNT/gptnt) with independent analysis on branch `language-collab-experiment`. Benchmark licence and authorship remain with the GPTNT authors — see their [LICENSE](LICENSE). The findings write-up, evidence pack, and handcheck materials are independent research notes.
 
 ---
 

@@ -1,8 +1,10 @@
-# Success Without Grounding: What GPTNT Wires Scores Hide
+# Success Without Grounding in GPTNT Wires
 
 Independent research building on **GPTNT** (Parekh, McCallum, Al-Hasan, Nikandrou, Suglia, Konstas, 2026; arXiv 2606.28514), a benchmark where two AI agents play *Keep Talking and Nobody Explodes*. Not affiliated with the GPTNT authors.
 
 **Author:** Devadhathan Maruthamangalam Dharmatheja · Edinburgh · October 2026
+
+**Scope:** these are **single-module Wires missions** (sync and async), not the full multi-module bombs behind the paper's headline result that no model defuses a bomb in real time. The two settings are not comparable; this study is not disputing that headline.
 
 ---
 
@@ -79,6 +81,12 @@ Two mechanisms explain wins without grounding:
 - **2** false "solved" claims; the Expert accepted one.
 - Both agents' post-game reflections often claim their descriptions were accurate when they weren't. **The agents cannot tell when their shared picture is wrong.**
 
+## Perception is the trigger; missing verification is the finding
+
+Wires in these frames are only a few pixels thick in a 640×480 observation. A fair objection is that GPT-5.2 simply cannot see the wires reliably — especially the top wire against a dark backing next to the Set-of-Marks outline — so the failures are perception, not collaboration.
+
+That perception error is real, and it is the **trigger**. The **finding** is what happens next: neither agent checks, doubts, or notices. The Defuser rarely re-describes after zooming; the Expert rarely challenges an inconsistent colour list; after a strike, teams almost never reset; and both sides' post-game reflections often call the dialogue accurate when it was not. Seeing badly is one problem. Building and trusting a shared picture without verification is the communication failure this study measures.
+
 ## Other observations
 
 - **Describe first, zoom later.** The Defuser described the wires from the overview in 57/60 games and re-described after zooming in only 6/60.
@@ -127,6 +135,11 @@ Two mechanisms explain wins without grounding:
 - Labels come from an automatic parser checked against the game's ground truth; an independent blind hand-check is in progress.
 - The 4 and 5-wire results come from one mission each.
 - Single-module results are not comparable to GPTNT's leaderboard, which uses full multi-module bombs, and overlay runs modify protected prompts by design.
+- Thin wires in 640×480 frames make perception failures likely; this study treats them as the trigger and measures the missing verification afterwards (see above).
+
+## Evidence
+
+Summary CSVs and chat transcripts for the games quoted here (and the handcheck sample) are committed under [`evidence/`](evidence/) so the counts can be checked without re-running the full study. Full observation parquets remain gitignored under `output/` (large).
 
 ## Cost
 
