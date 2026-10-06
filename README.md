@@ -18,13 +18,13 @@ Stock agents solved **29/60** single-module Wires games (**48%**), but only **5*
 | --- | --- | --- |
 | Wins | 29 | 5 |
 | Grounded wins | **5** | **4** |
-| Wins without grounding (`cancelled_errors`) | **21** (18 rule-robust, 3 redundancy-rescue) | 1 |
+| Wins without grounding (`cancelled_errors`) | **21** (19 rule-robust, 2 redundancy-rescue) | 1 |
 | Recovered after a strike | 3 | 0 |
 | Correct 6-wire descriptions | 0/30 | 3/5 on missions 234 & 845 |
 
 A prompt-only communication overlay (`grounded_repair`) kept win rate flat (**5 vs 5** on matched games) but changed *how* wins happened: grounded wins **0 → 4**.
 
-**Status:** preliminary. A blind hand-check of 20 games is in progress ([handcheck/handcheck_sheet.md](handcheck/handcheck_sheet.md)).
+**Hand-check:** **12 of 20** blind labels agreed with the scorer. After resolving the 8 disagreements against the game record, the published split is **19 `rule_robust` / 2 `redundancy_rescue`** among stock cancelled-error wins (was 18/3). Details in [FINDINGS.md](FINDINGS.md#hand-check).
 
 ---
 

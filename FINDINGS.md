@@ -15,7 +15,7 @@ Independent research building on **GPTNT** (Parekh, McCallum, Al-Hasan, Nikandro
 - After a wrong cut, teams recovered only **3** times in 60 games.
 - In a 10-game matched pilot, a prompt-only communication overlay kept wins the same (**5 vs 5**) but changed **how** they were won: grounded wins **0 → 4**, and the first correct descriptions of 6-wire bombs (**3/5** vs **0/12** for stock on the same bombs).
 
-**Status:** results are preliminary. A blind hand-check of 20 games against the automatic labels is in progress.
+**Hand-check:** a blind 20-game sample agreed with the automatic scorer on **12/20** labels; the 8 disagreements were adjudicated against the game record (see [Hand-check](#hand-check)). Verified stock cancelled-error split: **19 `rule_robust`, 2 `redundancy_rescue`**.
 
 ---
 
@@ -57,7 +57,7 @@ Stock prompts verified unchanged (`gptnt doctor`, empty prompt diff). Overlay ru
 | Timeouts | 14 | 17 | 31 |
 | Strikeouts | 0 | 0 | 0 |
 
-How the 29 wins happened: **5 grounded, 21 cancelled errors** (18 `rule_robust`, 3 `redundancy_rescue`), **3 recovered.**
+How the 29 wins happened: **5 grounded, 21 cancelled errors** (19 `rule_robust`, 2 `redundancy_rescue`), **3 recovered.**
 
 ## Finding 2: Grounding collapses as the bomb gets more detailed
 
@@ -105,7 +105,7 @@ That perception error is real, and it is the **trigger**. The **finding** is wha
 | --- | --- | --- |
 | Wins | 5 | 5 |
 | Grounded wins | **0** | **4** |
-| Wins without grounding | 5 | 1 |
+| Wins without grounding | 5 | 1 (`redundancy_rescue`) |
 | Correct descriptions | 0 | 4 |
 | Recoveries after a strike | 0 | 0 |
 
@@ -128,11 +128,30 @@ That perception error is real, and it is the **trigger**. The **finding** is wha
 
 ---
 
+## Hand-check
+
+Blind labels for 20 games ([handcheck/handcheck_sheet.md](handcheck/handcheck_sheet.md)) vs `scripts/summarize_runs.py` primary label (`solve_type` or `failure_type`). CSV labels were not shown on the sheet.
+
+**12 of 20 agreed.**
+
+| Game | Hand | Script | Who was right (game record) |
+| --- | --- | --- | --- |
+| stock async 337/3 | `rule_robust` | `redundancy_rescue` | **Hand** — wrong list still ends blue; rule says cut last; Expert also said “last blue”, but same answer is rule robustness |
+| stock async 813/1 | `false_solve_claim` | `grounded` | **Script** — description matched; module `isSolved` became true (cut flag never set in state; not a false “solved” while unsolved) |
+| stock sync 561/2 | `struck_no_fix` | `other_module_talk` | **Hand** — wrong cut + strike, never recovered; script’s `other_module_talk` can fire on incidental “button” talk and outranks strike failures |
+| stock sync 813/3 | `false_solve_claim` | `grounded` | **Script** — same pattern as async 813/1 |
+| overlay async 234/3 | `rule_robust` | `grounded` | **Script** — first overview was wrong; zoomed list before the cut matched TRUE WIRES |
+| overlay async 561/2 | `redundancy_rescue` | `other` | **Hand** — wrong count/colours, then cut the named white wire 4 (correct); script left `correct_slot` empty so fell through to `other` |
+| overlay async 561/3 | `struck_no_fix` | `other_module_talk` | **Hand** — two wrong cuts with strikes, timeout; same `other_module_talk` priority issue |
+| overlay async 845/2 | `rule_robust` | `grounded` | **Script** — early overview wrong; zoomed A–F list before the cut matched TRUE WIRES |
+
+Verified adjustments used in the counts above: stock `rule_robust` **19** / `redundancy_rescue` **2** (was 18/3); overlay’s one non-grounded win typed as `redundancy_rescue` (was `other`).
+
 ## Limitations
 
 - One module (Wires), one model pairing, 10 missions.
 - The overlay pilot has 10 games; the win comparison has little statistical power.
-- Labels come from an automatic parser checked against the game's ground truth; an independent blind hand-check is in progress.
+- Labels come from an automatic parser checked against the game's ground truth; a blind 20-game hand-check agreed on 12/20 (disagreements adjudicated above). Remaining games still use automatic labels.
 - The 4 and 5-wire results come from one mission each.
 - Single-module results are not comparable to GPTNT's leaderboard, which uses full multi-module bombs, and overlay runs modify protected prompts by design.
 - Thin wires in 640×480 frames make perception failures likely; this study treats them as the trigger and measures the missing verification afterwards (see above).

@@ -20,12 +20,13 @@ failed games get a single failure_type. Label meanings (one line each):
     cut_slot_mismatch — Solved, but the first recorded cut ≠ seeded answer (rare).
     uncategorized_solve — Solved, but grounding/cut record incomplete (should stay rare).
 
-  failure_type
+  failure_type (priority order)
     false_solve_claim — Defuser said solved/green while Wires.isSolved was still False.
-    other_module_talk — Chat mentioned a different module type on a Wires-only bomb;
-                        does not by itself mean the Expert applied the wrong rules.
-    never_cut         — No wire was ever cut before timeout / end.
     struck_no_fix — Cut a wrong wire (strike) and never made the correct cut.
+                        Wins over other_module_talk when a wrong cut occurred.
+    other_module_talk — Chat mentioned a different module type on a Wires-only bomb;
+                        only when that is the main failure (no wrong cut).
+    never_cut         — No wire was ever cut before timeout / end.
 
 Failed / crashed / incomplete sessions are kept as rows with a reason.
 """
@@ -55,6 +56,7 @@ COLOUR_WORDS = (
     "yellow",
     "white",
     "black",
+    "brown",  # common misread of black; normalised to black
     "orange",
     "green",
     "purple",
@@ -196,9 +198,12 @@ def _ok_wire_count(n: int) -> bool:
 
 
 # rule_seed 1764 Wires rules (as rendered in the Expert handbook / Expert thoughts):
-# 6 wires: last_blue→last; >1_white→second; exactly_1_red→third; else→second
 # 3 wires: last_black+empty_port_plate→second; >1_red+no_blue→last_red;
 #          exactly_1_white→the_white; else→last
+# 4 wires: 1_yellow+RJ45→second; last_yellow→first; no_black→last; else→third
+# 5 wires: >1_black+serial→first_black; 1_white→third; last_white→second;
+#          no_black→last; else→fourth
+# 6 wires: last_blue→last; >1_white→second; exactly_1_red→third; else→second
 
 
 @dataclass
@@ -355,7 +360,11 @@ def _oracle_wires(bomb: dict[str, Any] | None) -> list[str] | None:
 
 
 def _norm_colour(c: str) -> str:
-    return c.lower().replace("gray", "grey")
+    c = c.lower().replace("gray", "grey")
+    # Agents often call black wires "brown" in overview shots.
+    if c == "brown":
+        return "black"
+    return c
 
 
 def _extract_described_wires(text: str) -> tuple[list[str] | None, str]:
@@ -478,29 +487,67 @@ def _cut_slot_from_steps(steps: list[dict[str, Any]]) -> str:
     return ""
 
 
-def _has_empty_port_plate(bomb: dict[str, Any] | None) -> bool:
+def _iter_port_widgets(bomb: dict[str, Any] | None) -> list[dict[str, Any]]:
     if not bomb:
-        return False
+        return []
+    out: list[dict[str, Any]] = []
     for key in ("widgets", "WidgetList", "edgework", "presentWidgets"):
         widgets = bomb.get(key)
-        if isinstance(widgets, list):
-            for w in widgets:
-                if not isinstance(w, dict):
-                    continue
-                wtype = str(w.get("type") or w.get("name") or w.get("widgetType") or "").lower()
-                if "port" in wtype:
-                    ports = w.get("ports") or w.get("PortTypes") or w.get("portTypes") or []
-                    if ports == [] or ports is None:
-                        return True
-                    if isinstance(ports, list) and len(ports) == 0:
-                        return True
+        if not isinstance(widgets, list):
+            continue
+        for w in widgets:
+            if not isinstance(w, dict):
+                continue
+            wtype = str(w.get("type") or w.get("name") or w.get("widgetType") or "").lower()
+            if "port" in wtype:
+                out.append(w)
+    return out
+
+
+def _port_type_list(widget: dict[str, Any]) -> list[str]:
+    ports = (
+        widget.get("portType")
+        or widget.get("ports")
+        or widget.get("PortTypes")
+        or widget.get("portTypes")
+    )
+    if ports is None:
+        return []
+    if isinstance(ports, list):
+        return [str(p) for p in ports]
+    return [str(ports)]
+
+
+def _has_empty_port_plate(bomb: dict[str, Any] | None) -> bool:
+    for w in _iter_port_widgets(bomb):
+        if len(_port_type_list(w)) == 0:
+            return True
     # Some dumps flatten empty plates as a flag / portPlate with empty list
-    for plate in bomb.get("portPlates") or bomb.get("PortPlates") or []:
+    for plate in (bomb or {}).get("portPlates") or (bomb or {}).get("PortPlates") or []:
         if isinstance(plate, list) and len(plate) == 0:
             return True
-        if isinstance(plate, dict) and not (plate.get("ports") or plate.get("PortTypes")):
+        if isinstance(plate, dict) and not (
+            plate.get("ports") or plate.get("PortTypes") or plate.get("portType")
+        ):
             return True
     return False
+
+
+def _has_named_port(bomb: dict[str, Any] | None, *names: str) -> bool:
+    want = {n.lower().replace("-", "") for n in names}
+    for w in _iter_port_widgets(bomb):
+        for p in _port_type_list(w):
+            if p.lower().replace("-", "") in want:
+                return True
+    return False
+
+
+def _has_rj45_port(bomb: dict[str, Any] | None) -> bool:
+    return _has_named_port(bomb, "rj45", "rj-45", "RJ45")
+
+
+def _has_serial_port(bomb: dict[str, Any] | None) -> bool:
+    return _has_named_port(bomb, "serial")
 
 
 def _ordinal_to_slot(entries: list[dict[str, Any]], which: str) -> int | None:
@@ -533,6 +580,8 @@ def _rule_slot_1764(
     colours: list[str],
     *,
     empty_port_plate: bool = False,
+    rj45_port: bool = False,
+    serial_port: bool = False,
     positions: list[int] | None = None,
 ) -> str:
     """Apply rule_seed 1764 to a top→bottom colour list; return the chosen slot index."""
@@ -562,6 +611,31 @@ def _rule_slot_1764(
             return slot_for("third")
         return slot_for("second")
 
+    if n == 5:
+        # >1 black + serial → first black; 1 white → third; last white → second;
+        # no black → last; else fourth
+        if colours.count("black") > 1 and serial_port:
+            for e in entries:
+                if e["color"] == "black":
+                    return str(e["position"])
+        if colours.count("white") == 1:
+            return slot_for("third")
+        if colours[-1] == "white":
+            return slot_for("second")
+        if colours.count("black") == 0:
+            return slot_for("last")
+        return slot_for("fourth")
+
+    if n == 4:
+        # 1 yellow + RJ45 → second; last yellow → first; no black → last; else third
+        if colours.count("yellow") == 1 and rj45_port:
+            return slot_for("second")
+        if colours[-1] == "yellow":
+            return slot_for("first")
+        if colours.count("black") == 0:
+            return slot_for("last")
+        return slot_for("third")
+
     if n == 3:
         # 1 last black + empty port plate → second
         # 2 >1 red and no blue → last red
@@ -578,8 +652,15 @@ def _rule_slot_1764(
                     return str(e["position"])
         return slot_for("last")
 
-    # 4/5-wire branches not needed for this pilot; leave blank rather than guess.
     return ""
+
+
+def _bomb_port_flags(bomb: dict[str, Any] | None) -> dict[str, bool]:
+    return {
+        "empty_port_plate": _has_empty_port_plate(bomb),
+        "rj45_port": _has_rj45_port(bomb),
+        "serial_port": _has_serial_port(bomb),
+    }
 
 
 def _correct_slot_rule_seed_1764(bomb: dict[str, Any] | None) -> str:
@@ -589,8 +670,8 @@ def _correct_slot_rule_seed_1764(bomb: dict[str, Any] | None) -> str:
         return ""
     return _rule_slot_1764(
         [e["color"] for e in entries],
-        empty_port_plate=_has_empty_port_plate(bomb),
         positions=[int(e["position"]) for e in entries],
+        **_bomb_port_flags(bomb),
     )
 
 
@@ -616,12 +697,23 @@ def _cancelled_error_subtype(
     instruction_has_colour: str,
 ) -> str:
     """Split former cancelled_errors into rule_robust / redundancy_rescue / other."""
-    colours = [c.strip() for c in (described_wires or "").split(",") if c.strip()]
+    colours = [_norm_colour(c.strip()) for c in (described_wires or "").split(",") if c.strip()]
     if not colours:
         return "other"
 
     oracle_entries = _oracle_wire_entries(bomb_for_rules)
     oracle_positions = [int(e["position"]) for e in oracle_entries] if oracle_entries else []
+    port_flags = _bomb_port_flags(bomb_for_rules)
+
+    # Fill correct_slot from oracle + seeded rules when the caller left it blank
+    # (previously 4/5-wire bombs fell through to "other").
+    if not correct_slot and oracle_entries:
+        correct_slot = _rule_slot_1764(
+            [e["color"] for e in oracle_entries],
+            positions=oracle_positions,
+            **port_flags,
+        )
+
     # Same wire count → reuse oracle slot indices so rule output is comparable to cut_slot.
     if oracle_positions and len(oracle_positions) == len(colours):
         desc_positions = oracle_positions
@@ -630,19 +722,26 @@ def _cancelled_error_subtype(
 
     described_slot = _rule_slot_1764(
         colours,
-        empty_port_plate=_has_empty_port_plate(bomb_for_rules),
         positions=desc_positions,
+        **port_flags,
     )
     if not described_slot or not correct_slot:
-        # Can't evaluate the rule on the description (e.g. 4/5-wire) → other.
         if instruction_has_colour == "True" and cut_slot and cut_slot == correct_slot:
             return "redundancy_rescue"
         return "other"
 
     desc_ord = _slot_ordinal(desc_positions, described_slot)
     true_ord = _slot_ordinal(oracle_positions, correct_slot) if oracle_positions else None
-    if desc_ord is not None and true_ord is not None and desc_ord == true_ord:
-        return "rule_robust"
+    # Same ordinal from the top, or both rules select the last present wire
+    # (e.g. last-is-blue on a mis-counted list that still ends blue).
+    if desc_ord is not None and true_ord is not None:
+        if desc_ord == true_ord:
+            return "rule_robust"
+        if (
+            desc_ord == len(desc_positions) - 1
+            and true_ord == len(oracle_positions) - 1
+        ):
+            return "rule_robust"
     if (
         instruction_has_colour == "True"
         and cut_slot
@@ -879,19 +978,18 @@ def _failure_type(
     if false_solve_claim == "True":
         return "false_solve_claim"
 
-    blob = _dialogue_blob(expert_steps) + "\n" + _dialogue_blob(defuser_steps)
-    if MODULE_MISID_RE.search(blob):
-        # Not "description was wrong" — only that other-module talk appeared.
-        return "other_module_talk"
-
     cut_happened = _any_wire_cut(defuser_steps)
-    if not cut_happened:
-        # Expert gave a cut, or game just stalled with no cut at all.
-        return "never_cut"
-
-    # Struck then never recovered — includes exploratory top-wire probes.
+    # Wrong cut that was never fixed outranks incidental other-module chat
+    # (e.g. calling the status LED a "button").
     if steps_after_first_strike and recovered_after_strike != "True":
         return "struck_no_fix"
+
+    blob = _dialogue_blob(expert_steps) + "\n" + _dialogue_blob(defuser_steps)
+    if MODULE_MISID_RE.search(blob):
+        return "other_module_talk"
+
+    if not cut_happened:
+        return "never_cut"
 
     # Timed out after cutting something but no strike recorded / odd edge cases.
     if expert_cut_msg and recovered_after_strike != "True":
